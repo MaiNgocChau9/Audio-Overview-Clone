@@ -15,7 +15,7 @@ def save_binary_file(file_name, data):
     f.close()
 
 
-def generate(content: str = None):
+def generate(content = None, customize = ""):
     if not content:
         return None
     client = genai.Client(
@@ -23,14 +23,25 @@ def generate(content: str = None):
     )
 
     model = "gemini-2.5-flash-preview-tts"
+    
+    # Đọc prompt từ file
+    with open("prompt_audio.txt", "r", encoding="utf-8") as f:
+        prompt_text = f.read()
+    
+    # Tạo nội dung text hoàn chỉnh
+    full_text = f"{prompt_text}\n{content}"
+    if customize:
+        full_text += f"\n{customize}"
+    
     contents = [
         types.Content(
             role="user",
             parts=[
-                types.Part.from_text(text=content),
+                types.Part.from_text(text=full_text),
             ],
         ),
     ]
+    
     generate_content_config = types.GenerateContentConfig(
         temperature=1,
         response_modalities=[
