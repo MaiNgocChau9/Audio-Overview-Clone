@@ -34,11 +34,11 @@ def generate(document=[], customize=""):
     # Đặt tên cho bản tổng quát vừa tạo
     name = client.models.generate_content(
         model="gemini-2.5-flash-lite",
-        contents=["Give me a short name for this overview:\n" + response.text],
-    ).strip()
+        contents=["Give me a short name for this overview (ONLY ONE FILE NAME, NO TALKING OTHER. JUST TEXT OF NAME!):\n" + response.text],
+    )
 
     # Lưu file
-    with open(f"{name}.txt", "w") as f:
+    with open(f"{name.text} Overview.txt", "w") as f:
         f.write(response.text)
 
-    return [response.text, name]
+    return [response.text, name.text]

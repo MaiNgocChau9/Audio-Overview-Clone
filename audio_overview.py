@@ -27,8 +27,8 @@ for document in documents:
 
 print("\nFiles uploaded successfully.")
 # Generate text overview
-text_overview, name = generate_text(uploaded_documents, str(input("Enter customization text (optional): ").strip()))
-print(f"Text overview generated successfully:\n{name}.txt\n")
+text_overview, name = generate_text(uploaded_documents, str(input("Enter customization text (optional): ")))
+print(f"Text overview generated successfully")
 
 # Generate audio overview
 audio_overview = generate_audio(text_overview, str(input("Enter customization audio (optional): ")), name)
