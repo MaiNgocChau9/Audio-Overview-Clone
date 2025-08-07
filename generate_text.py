@@ -30,4 +30,15 @@ def generate(document=[], customize=""):
         contents=contents,
         # Loại bỏ config phức tạp hoặc đơn giản hóa
     )
-    return response.text
+
+    # Đặt tên cho bản tổng quát vừa tạo
+    name = client.models.generate_content(
+        model="gemini-2.5-flash-lite",
+        contents=["Give me a short name for this overview:\n" + response.text],
+    ).strip()
+
+    # Lưu file
+    with open(f"{name}.txt", "w") as f:
+        f.write(response.text)
+
+    return [response.text, name]

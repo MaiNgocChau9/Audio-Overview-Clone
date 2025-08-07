@@ -39,8 +39,8 @@ pip install google-generativeai python-dotenv
 
 3. Create a `.env` file in the project root and add your configuration:
 ```env
-GEMINI_API_KEY=your_api_key_here
-LANGUAGE=your_preferred_language
+GEMINI_API_KEY="your_api_key_here"
+LANGUAGE="your_preferred_language"
 ```
 
 ## Usage

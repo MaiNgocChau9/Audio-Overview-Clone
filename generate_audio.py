@@ -15,7 +15,7 @@ def save_binary_file(file_name, data):
     f.close()
 
 
-def generate(content = None, customize = ""):
+def generate(content = None, customize = "", name_file="AUDIO_OVERVIEW"):
     if not content:
         return None
     client = genai.Client(
@@ -70,7 +70,7 @@ def generate(content = None, customize = ""):
         ):
             continue
         if chunk.candidates[0].content.parts[0].inline_data and chunk.candidates[0].content.parts[0].inline_data.data:
-            file_name = f"ENTER_FILE_NAME_{file_index}"
+            file_name = name_file
             file_index += 1
             inline_data = chunk.candidates[0].content.parts[0].inline_data
             data_buffer = inline_data.data
