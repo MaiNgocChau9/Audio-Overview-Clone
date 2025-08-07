@@ -20,7 +20,7 @@ def generate():
             role="user",
             parts=[
                 types.Part.from_text(text=f"""
-{open("prompt_content.txt", "r").read()}
+{open("prompt_content.txt", "r").read().replace("[Language]", str(os.environ.get("LANGUAGE")))}
 An incandescent light bulb, incandescent lamp or incandescent light globe is an electric light with a
 wire filament that is heated until it glows. The filament is enclosed in a glass bulb that is either
 evacuated or filled with inert gas to protect the filament from oxidation. Current is supplied to the
@@ -185,7 +185,7 @@ filament of carbon of high resistance" was valid
         ),
         tools=tools,
         system_instruction=[
-            types.Part.from_text(text=f"{open("prompt_text.txt", "r").read()}\n{open("prompt_content.txt", "r").read()}"),
+            types.Part.from_text(text=f"{open("prompt_text.txt", "r").read().replace("[Language]", str(os.environ.get("LANGUAGE")))}\n{open("prompt_content.txt", "r").read().replace("[Language]", str(os.environ.get("LANGUAGE")))}"),
         ],
     )
 
