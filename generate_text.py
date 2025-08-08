@@ -34,7 +34,7 @@ def generate(document=[], customize=""):
     try:
         name_res = client.models.generate_content(
             model=model,
-            contents=["Give me a short name for this overview (ONLY ONE FILE NAME, JUST TEXT):\n" + response.text],
+            contents=[f"Give me a short and clear title for this overview in {lang}, using normal spacing between words.\nDo NOT join words together, do NOT use underscores, and do NOT add any punctuation.\nReturn ONLY the title text, nothing else:\n\n" + response.text],
         )
         raw_name = name_res.text.strip()
         safe_name = sanitize_filename(raw_name)
